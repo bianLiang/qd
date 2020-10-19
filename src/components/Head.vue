@@ -1,6 +1,10 @@
 <template>
     <div class="head-box">
-        <van-icon  @click="backHistory" v-if="$route.meta.isBack"  class="icon" name="arrow-left" />
+        <span class="icon">
+            <van-icon style="margin:0 0.1rem" size=".4rem" @click="backHistory" v-if="$route.meta.isBack"  name="arrow-left" />
+            <van-icon style="margin:0 0.1rem" size=".4rem" @click="goHome" v-if="$route.meta.isBack" name="cross" />
+        </span>
+        
         {{$route.meta.text}}
     </div>
 </template>
@@ -20,6 +24,11 @@ export default {
         backHistory() {
             this.$router.back(); //返回上一层
         },
+        goHome() {
+            this.$router.push({
+                name: "Home"
+            }); 
+        },
     },
 }
 </script>
@@ -37,6 +46,5 @@ export default {
     .icon {
         position: absolute;
         left: 0.2rem;
-        top: 0.3rem;
     }
 </style>

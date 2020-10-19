@@ -42,7 +42,7 @@
                 <van-icon name="arrow" />
             </div>
         </div>
-        <div class="submit">确定</div>
+        <div class="submit" @click="submit">确定</div>
         
         <van-popup v-model="isStartTime" position="bottom" :style="{ height: '40%' }">
             <van-datetime-picker
@@ -170,6 +170,22 @@ export default {
             this.source = value;
             this.isSource = false;
         },
+        submit() {
+            const data = {
+                startTime:this.startTime==='请选择'? '':this.startTime,
+                endTime:this.endTime==='请选择'? '':this.endTime,
+                province:this.province==='请选择'? '':this.province,
+                city:this.city==='请选择'? '':this.city,
+                county:this.county==='请选择'? '':this.county,
+                source:this.source==='请选择'? '':this.source
+            }
+            this.$router.push({
+                name: "Search",
+                query: {
+                    data: data
+                }
+            }); 
+        }
 
 
     },

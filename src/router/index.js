@@ -7,6 +7,9 @@ import Garden from '../components/garden/Garden.vue'
 import Business from '../components/business/Business.vue'
 import My from '../components/my/My.vue'
 import Screen from '../components/screen/Screen.vue'
+import ScreenGarten from '../components/screen/ScreenGarten.vue'
+import Search from '../components/search/Search.vue'
+import Kindergarten from '../components/search/Kindergarten.vue'
 Vue.use(Router)
 export default new Router({
     routes: [
@@ -51,13 +54,43 @@ export default new Router({
             },
         },
         {
+            path: '/ScreenGarten',
+            name: 'ScreenGarten',
+            component: ScreenGarten,
+            meta: {
+                keepAlive: true,
+                isBack: true,
+                text:'筛选'
+            },
+        },
+        {
+            path: '/Search',
+            name: 'Search',
+            component: Search,
+            meta: {
+                keepAlive: true,
+                isBack: true,
+                text:'地区'
+            },
+        },
+        {
+            path: '/Kindergarten',
+            name: 'Kindergarten',
+            component: Kindergarten,
+            meta: {
+                keepAlive: true,
+                isBack: true,
+                text:'幼儿园信息'
+            },
+        },
+        {
             path: '/Garden',
             name: 'Garden',
             component: Garden,
             meta: {
                 keepAlive: true,
                 isBack: false,
-                text:'开园'
+                text:'开园账号'
             },
         },
         {
