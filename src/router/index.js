@@ -11,6 +11,12 @@ import Serve from '../components/my/Serve.vue'
 import ParkData from '../components/my/ParkData.vue'
 import Notice from '../components/my/Notice.vue'
 import NoticeDetails from '../components/my/NoticeDetails.vue'
+import Policy from '../components/my/Policy.vue'
+import PolicyDetails from '../components/my/PolicyDetails.vue'
+import Means from '../components/my/Means.vue'
+import MeansDetails from '../components/my/MeansDetails.vue'
+import PersonalSettings from '../components/my/PersonalSettings.vue'
+import Framework from '../components/my/Framework.vue'
 import Screen from '../components/screen/Screen.vue'
 import ScreenGarten from '../components/screen/ScreenGarten.vue'
 import Search from '../components/search/Search.vue'
@@ -166,6 +172,66 @@ export default new Router({
                 keepAlive: false,
                 isBack: true,
                 text:'通知详情'
+            },
+        },
+        {
+            path: '/Policy',
+            name: 'Policy',
+            component: Policy,
+            meta: {
+                keepAlive: false,
+                isBack: true,
+                text:'政策'
+            },
+        },
+        {
+            path: '/PolicyDetails',
+            name: 'PolicyDetails',
+            component: PolicyDetails,
+            meta: {
+                keepAlive: false,
+                isBack: true,
+                text:'政策详情'
+            },
+        },
+        {
+            path: '/Means',
+            name: 'Means',
+            component: Means,
+            meta: {
+                keepAlive: false,
+                isBack: true,
+                text:'资料'
+            },
+        },
+        {
+            path: '/MeansDetails',
+            name: 'MeansDetails',
+            component: MeansDetails,
+            meta: {
+                keepAlive: false,
+                isBack: true,
+                text:'资料详情'
+            },
+        },
+        {
+            path: '/PersonalSettings',
+            name: 'PersonalSettings',
+            component: PersonalSettings,
+            meta: {
+                keepAlive: false,
+                isBack: true,
+                text:'个人设置'
+            },
+        },
+        {
+            path: '/Framework',
+            name: 'Framework',
+            component: Framework,
+            meta: {
+                keepAlive: false,
+                isBack: true,
+                text:'组织架构'
             },
         },
     ]

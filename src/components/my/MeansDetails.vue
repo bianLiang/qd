@@ -1,7 +1,7 @@
 <template>
     <div style="line-height: 0.6rem;">
         <div style="padding: 0 0.2rem;">
-            <span>【通知】</span>
+            <span>【资料】</span>
             <span>关于合作园所视频收费新政策施行通知</span>
         </div>
         <div style="text-align: right;padding: 0 0.2rem;border-bottom: 0.01rem solid #eee;">1份资料可下载</div>
@@ -20,7 +20,7 @@
 </template>
 <script>
 export default {
-    name:'NoticeDetails',
+    name:'MeansDetails',
     data() {
         return {
             

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div @click="goNoticeDetails" v-for="(item,index) in noticeList" :key="index" style="padding: 0.2rem;background: #f8f8f8;margin: 0.2rem 0;">
+        <div @click="goPolicyDetails" v-for="(item,index) in policyList" :key="index" style="padding: 0.2rem;background: #f8f8f8;margin: 0.2rem 0;">
             <div>
                 <span>【{{item.type}}】</span>
                 <span>{{item.title}}</span>
@@ -11,18 +11,18 @@
 </template>
 <script>
 export default {
-    name:"Notice",
+    name:"Policy",
     data() {
         return {
-            noticeList:[
+            policyList:[
                 {
-                    type:'通知',
-                    title:'关于合作园所视频收费新政策施行通知',
+                    type:'政策',
+                    title:'校园缴费合作园拓展新政策',
                     time:'2020-06-01'
                 },
                 {
-                    type:'说明',
-                    title:'城市合伙人项目',
+                    type:'商业',
+                    title:'雏鹰金融-渠道合作政策',
                     time:'2020-06-02'
                 },
 
@@ -30,9 +30,9 @@ export default {
         }
     },
     methods: {
-        goNoticeDetails() {
+        goPolicyDetails() {
              this.$router.push({
-                name: "NoticeDetails"
+                name: "PolicyDetails"
             });
         }
     },

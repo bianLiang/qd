@@ -22,24 +22,24 @@
                 <span>通知公告</span>
                 <van-icon name="arrow" />
             </div>
-            <div class="space-between itme">
+            <div class="space-between itme" @click="goPolicy">
                 <span>合作政策</span>
                 <van-icon name="arrow" />
             </div>
-            <div class="space-between itme">
+            <div class="space-between itme" @click="goMeans">
                 <span>资料</span>
                 <van-icon name="arrow" />
             </div>
-            <div class="space-between itme">
+            <div class="space-between itme" @click="goFramework">
                 <span>组织架构</span>
                 <van-icon name="arrow" />
             </div>
-            <div class="space-between itme">
+            <div class="space-between itme" @click="goPersonalSettings">
                 <span>个人设置</span>
                 <van-icon name="arrow" />
             </div>
         </div>
-        <van-popup close-on-click-overlay=true v-model="show" :style="{ height: '50%',width: '100%' }">
+        <van-popup close-on-click-overlay=true position="bottom" v-model="show" :style="{ height: '30%',width: '100%' }">
             <div class="form-box">
                 <van-form @submit="onSubmit">
                 <van-field
@@ -57,7 +57,7 @@
                     placeholder="密码"
                     :rules="[{ required: true, message: '请填写密码' }]"
                 />
-                <div style="margin:0.85rem 0.16rem;">
+                <div style="position: fixed;width: 98%;bottom: 0.2rem;left: 50%;margin-left: -49%;">
                     <van-button round block type="info" native-type="submit">
                     提交
                     </van-button>
@@ -124,6 +124,26 @@ export default {
                 name: "Notice"
             });
         },
+        goPolicy() {
+            this.$router.push({
+                name: "Policy"
+            });
+        },
+        goMeans() {
+            this.$router.push({
+                name: "Means"
+            });
+        },
+        goPersonalSettings() {
+            this.$router.push({
+                name: "PersonalSettings"
+            });
+        },
+        goFramework() {
+            this.$router.push({
+                name: "Framework"
+            });
+        },
     },
 }
 </script>
@@ -147,9 +167,6 @@ export default {
     .itme {
         padding: 0.3rem;
         border-bottom: 0.01rem solid #eee;
-    }
-    .form-box{
-        padding-top: 2rem;
     }
     .serve {
         height: 2rem;
