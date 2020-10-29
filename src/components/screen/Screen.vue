@@ -15,13 +15,13 @@
             </div>
         </div>
         <div @click="isProvince = true" class="item space-between">
-            <span>省</span>
+            <span>地区</span>
             <div class="space-between">
                 <span style='margin-right: 0.2rem;'>{{province}}</span>
                 <van-icon name="arrow" />
             </div>
         </div>
-        <div @click="isCity = true" class="item space-between">
+        <!-- <div @click="isCity = true" class="item space-between">
             <span>市</span>
             <div class="space-between">
                 <span style='margin-right: 0.2rem;'>{{city}}</span>
@@ -34,7 +34,7 @@
                 <span style='margin-right: 0.2rem;'>{{county}}</span>
                 <van-icon name="arrow" />
             </div>
-        </div>
+        </div> -->
         <div @click="isSource=true" class="item space-between">
             <span>园所来源</span>
             <div class="space-between">
@@ -67,13 +67,24 @@
             />
         </van-popup>
         <van-popup v-model="isProvince" position="bottom" :style="{ height: '40%' }">
-            <van-picker
+            <!-- <van-picker
             title="省"
             show-toolbar
             :columns="provinceColumns"
             @confirm="onConfirmProvince"
             @cancel="isProvince=false"
-            />
+            /> -->
+             <van-area
+                :area-list="provinceColumns"
+                @confirm="onConfirmProvince"
+                @cancel="isProvince = false"
+                :columns-num="columnsNum"
+            >
+                <template #title>
+                    <span class="btn" @click="onCityBtn" :class="{'select-btn': isCityBtn}">显示市</span>
+                    <span class="btn" @click="onCountyBtn" :class="{'select-btn': isCountyBtn}">显示县</span>
+                </template>
+            </van-area>
         </van-popup>
         <van-popup v-model="isCity" position="bottom" :style="{ height: '40%' }">
             <van-picker
@@ -107,17 +118,22 @@
 </template>
 <script>
 import { Icon } from 'vant';
-import { DatetimePicker,Popup,Picker  } from 'vant';
+import { DatetimePicker,Popup,Picker,Area  } from 'vant';
+import areaList from "../../assets/js/area";
 export default {
     name:'Screen',
     components:{
         [Icon.name]: Icon,
         [DatetimePicker.name]: DatetimePicker,
         [Popup.name]: Popup,
-        [Picker .name]: Picker ,
+        [Picker.name]: Picker,
+        [Area.name]: Area,
     },
     data() {
         return {
+            columnsNum:1,
+            isCityBtn:false,
+            isCountyBtn:false,
             maxDate:new Date(),
             minDate:new Date(2000, 0, 1),
             currentDate:new Date(2000, 0, 1),
@@ -127,7 +143,7 @@ export default {
             endTime:'请选择',
             isProvince:false,
             province:'请选择',
-            provinceColumns: ['杭州', '宁波', '温州', '绍兴', '湖州', '嘉兴', '金华', '衢州'],
+            provinceColumns: areaList,
             isCity:false,
             cityColumns: ['杭州', '宁波', '温州', '绍兴', '湖州', '嘉兴', '金华', '衢州'],
             city:'请选择',
@@ -140,6 +156,23 @@ export default {
         }
     },
     methods: {
+        onCityBtn() {
+            this.isCityBtn = !this.isCityBtn;
+            if (this.isCityBtn) {
+                this.columnsNum = 2;
+            } else {
+                this.columnsNum = 1;
+                this.isCountyBtn = false;
+            }
+        },
+        onCountyBtn() {
+            this.isCountyBtn = !this.isCountyBtn;
+            if (this.isCountyBtn) {
+                this.columnsNum = 3;
+            } else {
+                this.columnsNum = 2;
+            }
+        },
         formatTime(data){
              const d = new Date(data);
             const month = (d.getMonth() + 1)<10? '0'+ (d.getMonth() + 1): (d.getMonth() + 1);
@@ -153,9 +186,13 @@ export default {
         confirmEndTime() {
             this.endTime=this.formatTime(this.currentDate);
             this.isEndTime = false;
+            
         },
-        onConfirmProvince(value) {
-            this.province = value;
+        onConfirmProvince(values) {
+            this.province = values
+        .filter((item) => !!item)
+        .map((item) => item.name)
+        .join("/");
             this.isProvince = false;
         },
         onConfirmCity(value) {
@@ -207,5 +244,14 @@ export default {
     background: #f8f8f8;
     border-radius: 0.2rem;
     margin-top: 1rem;
+}
+.btn {
+    border: 0.01rem solid #888;
+    padding: 0.1rem;
+    border-radius: 0.1rem;
+}
+.select-btn {
+    background: #576b95;
+    color: #fff;
 }
 </style>
